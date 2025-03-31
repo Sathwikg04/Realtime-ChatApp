@@ -23,7 +23,6 @@ const LoginPage = () => {
       {/*left side */}
       <div className='flex flex-col justify-center items-center p-6 sm:p-12'>
         <div className='text-center mb-8'>
-          {/*Logo */}
           <div className='text-center mb-8'>
             <div className='flex flex-col items-center gap-2 group'>
               <div className='size-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors'>
@@ -64,7 +63,7 @@ const LoginPage = () => {
                 <input 
                 type={showPassword ? "text" : "password"}
                 className={`input input-bordered w-full pl-10`}
-                placeholder='..........'
+                placeholder='••••••••'
                 value={formData.password}
                 onChange={(e)=> setFormData({...formData, password: e.target.value})}
                 />
@@ -106,7 +105,6 @@ const LoginPage = () => {
       </div>
 
       {/* right side */}
-
       <AuthImagePattern 
       title="Join our community"
       subtitle="Connect with friends, share moments, and stay in touch with your loved ones"/>

@@ -23,7 +23,7 @@ export default function App() {
 
   if (isCheckingAuth && !authUser) return (
     <div className='flex items-center justify-center h-screen'>
-      <Loader className='size-10 animate-spin'/>
+      <Loader className='size-10 animate-spin' />
     </div>
   )
 
@@ -31,7 +31,7 @@ export default function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={authUser ? <Homepage /> : <Navigate to="/login" />}/>
+        <Route path="/" element={authUser ? <Homepage /> : <Navigate to="/login" />} />
         <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to="/login" />} />
         <Route path="/signup" element={!authUser ? <SignUpPage /> : <Navigate to="/login" />} />
         <Route path="/settings" element={<SettingsPage />} />
