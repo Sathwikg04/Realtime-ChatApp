@@ -14,9 +14,6 @@ const Sidebar = () => {
     getUsers();
   }, [getUsers]);
 
-  useEffect(() => {
-      console.log(`${selectedUser} in sidebar`);
-    },[selectedUser]);
 
   const filteredUsers = showOnlineOnly
     ? users.filter((user) => onlineUsers.includes(user._id))
@@ -58,7 +55,7 @@ const Sidebar = () => {
           >
             <div className="relative mx-auto lg:mx-0">
               <img
-                src={user.profilePic || "/avatar.png"}
+                src={user.profilePic || "/avatar.jpg"}
                 alt={user.name}
                 className="size-12 object-cover rounded-full"
               />
