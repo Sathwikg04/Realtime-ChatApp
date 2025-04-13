@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useAuthStore } from '../store/useAuthStore';
 import { Eye, EyeOff, Loader2, Mail, MessageSquare, User } from "lucide-react";
 import AuthImagePattern from '../components/AuthImagePattern';
@@ -24,13 +24,19 @@ const SignUpPage = () => {
 
     return true;
   }
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    const success = validateForm();
 
-    if (success === true) signup(formData);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const validate = validateForm();
+    if (!validate) return;
+
+    const success = await signup(formData);
+    if (success) {
+      navigate('/');
+    }
   }
 
   return (
@@ -41,7 +47,7 @@ const SignUpPage = () => {
           <div className='text-center mb-8'>
             <div className='flex flex-col items-center gap-2 group'>
               <div className='size-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors'>
-                <MessageSquare  className='size-6 text-primary'/>
+                <MessageSquare className='size-6 text-primary' />
               </div>
               <h1 className='text-2xl font-black mt-2'>Create Account</h1>
               <p className='text-base-content/60'>Get Started wih your free account</p>
@@ -55,14 +61,14 @@ const SignUpPage = () => {
               </label>
               <div className='relative'>
                 <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-                  <User className='size-5 text-base-content/40'/>
+                  <User className='size-5 text-base-content/40' />
                 </div>
-                <input 
-                type='text'
-                className={`input input-bordered w-full pl-10`}
-                placeholder='Full Name'
-                value={formData.fullName}
-                onChange={(e)=> setFormData({...formData, fullName: e.target.value})}
+                <input
+                  type='text'
+                  className={`input input-bordered w-full pl-10`}
+                  placeholder='Full Name'
+                  value={formData.fullName}
+                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                 />
               </div>
             </div>
@@ -73,14 +79,14 @@ const SignUpPage = () => {
               </label>
               <div className='relative'>
                 <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-                  <Mail className='size-5 text-base-content/40'/>
+                  <Mail className='size-5 text-base-content/40' />
                 </div>
-                <input 
-                type='email'
-                className={`input input-bordered w-full pl-10`}
-                placeholder='Email'
-                value={formData.email}
-                onChange={(e)=> setFormData({...formData, email: e.target.value})}
+                <input
+                  type='email'
+                  className={`input input-bordered w-full pl-10`}
+                  placeholder='Email'
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
               </div>
             </div>
@@ -93,22 +99,22 @@ const SignUpPage = () => {
                 <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
                   {/*<Lock className='size-5 text-base-content/40'/>*/}
                 </div>
-                <input 
-                type={showPassword ? "text" : "password"}
-                className={`input input-bordered w-full pl-10`}
-                placeholder='••••••••'
-                value={formData.password}
-                onChange={(e)=> setFormData({...formData, password: e.target.value})}
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className={`input input-bordered w-full pl-10`}
+                  placeholder='••••••••'
+                  value={formData.password}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 />
                 <button
-                type='button'
-                className='absolute inset-y-0 right-0 pr-3 flex items-center'
-                onClick={() => setShowPassword(!showPassword)}
+                  type='button'
+                  className='absolute inset-y-0 right-0 pr-3 flex items-center'
+                  onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
-                    <EyeOff className='size-5 text-base-content/400'/>
+                    <EyeOff className='size-5 text-base-content/400' />
                   ) : (
-                    <Eye className='size-5 text-base-content/40'/>
+                    <Eye className='size-5 text-base-content/40' />
                   )}
                 </button>
               </div>
@@ -117,30 +123,30 @@ const SignUpPage = () => {
             <button type='submit' className='btn btn-primary w-full' disabled={isSigningUp}>
               {isSigningUp ? (
                 <>
-                <Loader2 className='h-5 w-5 animate-spin'/>
-                Loading...
+                  <Loader2 className='h-5 w-5 animate-spin' />
+                  Loading...
                 </>
               ) : (
                 "Create Account"
               )}
-            </button> 
+            </button>
           </form>
 
           <div className='text-center'>
             <p className='text-base-content/60'>
-            Already have an account?{" "}
-            <Link to="/login" className='link link-primary'>
-            Sign In
-            </Link>
+              Already have an account?{" "}
+              <Link to="/login" className='link link-primary'>
+                Sign In
+              </Link>
             </p>
           </div>
         </div>
       </div>
 
       {/* right side */}
-      <AuthImagePattern 
-      title="Join our community"
-      subtitle="Connect with friends, share moments, and stay in touch with your loved ones"/>
+      <AuthImagePattern
+        title="Join our community"
+        subtitle="Connect with friends, share moments, and stay in touch with your loved ones" />
     </div>
   )
 }

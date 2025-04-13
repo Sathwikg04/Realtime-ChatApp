@@ -2,8 +2,8 @@ import React from 'react'
 
 const SettingsPage = () => {
   return (
-    <div>
-      
+    <div className='text-primary p-20'>
+      Settings
     </div>
   )
 }
