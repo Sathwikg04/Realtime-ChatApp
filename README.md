@@ -17,3 +17,7 @@ A modern, full-stack realtime chat application built with **React**, **Node.js**
 - Express.js
 - Socket.io
 - MongoDB (with Mongoose)
+
+---
+
+Live: https://realtime-chatapp-ttxe.onrender.com
